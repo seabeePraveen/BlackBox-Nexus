@@ -10,7 +10,7 @@ clOptionsDict = {
             "type": "integer",
             "required": False,
             "read_only": True,
-            "label": "input1"
+            "label": "input2"
         },
     },
     "question2":{
@@ -24,7 +24,7 @@ clOptionsDict = {
             "type": "integer",
             "required": False,
             "read_only": True,
-            "label": "input1"
+            "label": "input2"
         },
     }
 }
