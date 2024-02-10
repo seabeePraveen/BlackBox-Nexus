@@ -57,5 +57,4 @@ class fnBlackBoxAPI(APIView):
             'Custom-Header': 'Custom-Value',
         }
 
-        response = Response(data=clResponseData, headers=headers, status=status.HTTP_200_OK)
-        return response
+        return Response(data=clResponseData, headers=headers, status=status.HTTP_200_OK)
