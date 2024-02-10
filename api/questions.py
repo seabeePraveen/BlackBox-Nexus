@@ -1,15 +1,15 @@
-def fnAddTwoNumbers(*args):
-    arguments = ['a','b']
-    if len(args) != len(arguments):
+from .constants import clArgumentsListofQuestions
+
+def question1(**kwargs):
+    arguments = clArgumentsListofQuestions[0]
+    if len(kwargs) != len(arguments):
         raise Exception("arguments are not matched got more or less number of arguments please check once again")
-    variables = dict(zip(arguments, args))
 
-    return int(variables['a']) + int(variables['b'])
+    return int(kwargs[arguments[0]]) + int(kwargs[arguments[1]])
 
-def fnMultiplyTwoNumbers(*args):
-    arguments = ['a','b']
-    if len(args) != len(arguments):
+def question2(**kwargs):
+    arguments = clArgumentsListofQuestions[1]
+    if len(kwargs) != len(arguments):
         raise Exception("arguments are not matched got more or less number of arguments please check once again")
-    variables = dict(zip(arguments, args))
 
-    return int(variables['a']) * int(variables['b'])
+    return int(kwargs[arguments[0]]) + int(kwargs[arguments[1]])
