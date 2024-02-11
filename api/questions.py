@@ -107,3 +107,16 @@ def question11(**kwargs):
         raise Exception(sArgumentsErrorMssg)
     
     return int(kwargs[arguments[0]])*int(kwargs[arguments[1]])-(int(kwargs[arguments[0]])+int(kwargs[arguments[1]]))
+
+# count set bits and add
+def question12(**kwargs):
+    arguments = clArgumentsListofQuestions[11]
+    if len(kwargs) != len(arguments):
+        raise Exception(sArgumentsErrorMssg)
+    
+    count = 0
+    number = int(kwargs[arguments[0]])
+    while number:
+        count += number & 1
+        number >>= 1
+    return number
