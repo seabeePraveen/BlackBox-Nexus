@@ -102,6 +102,20 @@ clOptionsDict = {
             "read_only": True,
             "label": "input1"
         },
+    },
+    "question11":{
+        "input1":{
+            "type": "integer",
+            "required": True,
+            "read_only": True,
+            "label": "input1"
+        },
+        "intput2":{
+            "type": "integer",
+            "required": True,
+            "read_only": True,
+            "label": "input2"
+        },
     }
 }
 
@@ -116,6 +130,7 @@ clArgumentsListofQuestions = [
     ['input1'],          # 8
     ['input1'],          # 9
     ['input1'],          # 10
+    ['input1','input2'], # 11
 
 ]
 

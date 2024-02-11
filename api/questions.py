@@ -69,7 +69,7 @@ def question7(**kwargs):
 
 # square and previous square
 def question8(**kwargs):
-    arguments = clArgumentsListofQuestions[6]
+    arguments = clArgumentsListofQuestions[7]
     if len(kwargs) != len(arguments):
         raise Exception(sArgumentsErrorMssg)
     
@@ -77,7 +77,7 @@ def question8(**kwargs):
 
 # ascii sum of difference
 def question9(**kwargs):
-    arguments = clArgumentsListofQuestions[6]
+    arguments = clArgumentsListofQuestions[8]
     if len(kwargs) != len(arguments):
         raise Exception(sArgumentsErrorMssg)
     
@@ -90,7 +90,7 @@ def question9(**kwargs):
 
 # question 1 in bharath questions - odd_even
 def question10(**kwargs):
-    arguments = clArgumentsListofQuestions[6]
+    arguments = clArgumentsListofQuestions[9]
     if len(kwargs) != len(arguments):
         raise Exception(sArgumentsErrorMssg)
     
@@ -100,3 +100,10 @@ def question10(**kwargs):
     else:
         return a**2
     
+# add_subtract fn
+def question11(**kwargs):
+    arguments = clArgumentsListofQuestions[10]
+    if len(kwargs) != len(arguments):
+        raise Exception(sArgumentsErrorMssg)
+    
+    return int(kwargs[arguments[0]])*int(kwargs[arguments[1]])-(int(kwargs[arguments[0]])+int(kwargs[arguments[1]]))
