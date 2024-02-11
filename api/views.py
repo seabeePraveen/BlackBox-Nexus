@@ -6,7 +6,17 @@ from rest_framework.response import Response
 
 clQuestionsList = {
     "question1":questions.question1,
-    "question2":questions.question2
+    "question2":questions.question2,
+    "question3":questions.question3,
+    "question4":questions.question4,
+    "question5":questions.question5,
+    "question6":questions.question6,
+    "question7":questions.question7,
+    "question8":questions.question8,
+    "question9":questions.question9,
+    "question10":questions.question10,
+    "question11":questions.question11,
+    "question12":questions.question12,
 }
 
 class fnBlackBoxAPI(APIView):
