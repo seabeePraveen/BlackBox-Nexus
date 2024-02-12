@@ -54,13 +54,17 @@ clOptionsDict = {
             "type": "integer",
             "required": True,
             "read_only": True,
-            "label": "input1"
+            "label": "input1",
+            "maximum_value":5,
+            "minimum_value":-5,
         },
         "intput2":{
             "type": "integer",
             "required": True,
             "read_only": True,
-            "label": "input2"
+            "label": "input2",
+            "maximum_value":5,
+            "minimum_value":-5,
         },
     },
     "question6":{
@@ -125,6 +129,14 @@ clOptionsDict = {
             "label": "input1"
         },
     },
+    "question13":{
+        "input1":{
+            "type": "string",
+            "required": True,
+            "read_only": True,
+            "label": "input1"
+        },
+    },
 }
 
 clArgumentsListofQuestions = [
@@ -140,6 +152,7 @@ clArgumentsListofQuestions = [
     ['input1'],          # 10
     ['input1','input2'], # 11
     ['input1'],          # 12
+    ['input1'],          # 13
 ]
 
 sArgumentsErrorMssg = "arguments are not matched got more or less number of arguments please check once again"

@@ -82,11 +82,11 @@ def question9(**kwargs):
         raise Exception(sArgumentsErrorMssg)
     
     word = kwargs[arguments[0]]
-    sum = sum(ord(char) for char in word)
+    _sum = sum(ord(char) for char in word)
     values = [ord(char) for char in word]
     difference = max(values) - min(values)
     
-    return sum, difference
+    return _sum, difference
 
 # question 1 in bharath questions - odd_even
 def question10(**kwargs):
@@ -120,3 +120,17 @@ def question12(**kwargs):
         count += number & 1
         number >>= 1
     return number
+
+# (+5,-2) pattern of the word
+def question13(**kwargs):
+    arguments = clArgumentsListofQuestions[12]
+    if len(kwargs) != len(arguments):
+        raise Exception(sArgumentsErrorMssg)
+    
+    word = kwargs[arguments[0]]
+    output = ""
+    for i in range(0,len(word),2):
+        output += chr( ord(word[i]) + 5 )
+        if i < len(word):
+            output += chr( ord(word[i]) - 2 )
+    return output

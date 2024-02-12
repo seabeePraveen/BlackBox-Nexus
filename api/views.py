@@ -17,6 +17,7 @@ clQuestionsList = {
     "question10":questions.question10,
     "question11":questions.question11,
     "question12":questions.question12,
+    "question13":questions.question13,
 }
 
 class fnBlackBoxAPI(APIView):
@@ -68,3 +69,11 @@ class fnBlackBoxAPI(APIView):
         }
 
         return Response(data=clResponseData, headers=headers, status=status.HTTP_200_OK)
+    
+class fnBlackBoxHints(APIView):
+    def get(self,request,pk):
+        if clQuestionsList.get(pk):
+            print(pk)
+        else:
+            return Response(data={'message':'Looks like there no such question exists please try options'},status=status.HTTP_400_BAD_REQUEST)
+            
