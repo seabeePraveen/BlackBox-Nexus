@@ -10,19 +10,19 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 clQuestionsList = {
-    "question1":questions.question1,
-    "question2":questions.question2,
-    "question3":questions.question3,
-    "question4":questions.question4,
-    "question5":questions.question5,
-    "question6":questions.question6,
-    "question7":questions.question7,
-    "question8":questions.question8,
-    "question9":questions.question9,
-    "question10":questions.question10,
-    "question11":questions.question11,
-    "question12":questions.question12,
-    "question13":questions.question13,
+    "1":questions.question1,
+    "2":questions.question2,
+    "3":questions.question3,
+    "4":questions.question4,
+    "5":questions.question5,
+    "6":questions.question6,
+    "7":questions.question7,
+    "8":questions.question8,
+    "9":questions.question9,
+    "10":questions.question10,
+    "11":questions.question11,
+    "12":questions.question12,
+    "13":questions.question13,
 }
 
 class fnBlackBoxAPI(APIView):
