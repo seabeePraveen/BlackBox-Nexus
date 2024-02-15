@@ -90,10 +90,10 @@ class fnBlackBoxHints(APIView):
 class RegisterUser(APIView):
     def post(self,request):
         serializer = UserSerializer(data=request.data)
-        
+
         if not serializer.is_valid():
             return Response(data={
-                'message':'Data is not serialized'
+                'message':str(serializer.errors)
             },status=status.HTTP_400_BAD_REQUEST)
             
         serializer.save()
