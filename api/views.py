@@ -3,6 +3,11 @@ from rest_framework import status
 from .constants import clOptionsDict
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+from .serializer import UserSerializer
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 clQuestionsList = {
     "question1":questions.question1,
@@ -21,6 +26,8 @@ clQuestionsList = {
 }
 
 class fnBlackBoxAPI(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     def get(self,request,pk):
         if clQuestionsList.get(pk):
             fnFunctionName = clQuestionsList[pk]
@@ -77,3 +84,21 @@ class fnBlackBoxHints(APIView):
         else:
             return Response(data={'message':'Looks like there no such question exists please try options'},status=status.HTTP_400_BAD_REQUEST)
             
+            
+class RegisterUser(APIView):
+    def post(self,request):
+        serializer = UserSerializer(data=request.data)
+        
+        if not serializer.is_valid():
+            return Response(data={
+                'message':'Data is not serialized'
+            },status=status.HTTP_400_BAD_REQUEST)
+            
+        serializer.save()
+        user = User.objects.get(username=serializer.data['username'])
+        token_obj,_ = Token.objects.get_or_create(user=user)
+        
+        return Response(data={
+            'token':str(token_obj)
+        },status=status.HTTP_201_CREATED)
+    
