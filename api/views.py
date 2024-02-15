@@ -78,6 +78,8 @@ class fnBlackBoxAPI(APIView):
         return Response(data=clResponseData, headers=headers, status=status.HTTP_200_OK)
     
 class fnBlackBoxHints(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     def get(self,request,pk):
         if clQuestionsList.get(pk):
             print(pk)
@@ -101,4 +103,3 @@ class RegisterUser(APIView):
         return Response(data={
             'token':str(token_obj)
         },status=status.HTTP_201_CREATED)
-    
