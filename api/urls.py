@@ -7,4 +7,5 @@ urlpatterns = [
     path('auth/register/',views.RegisterUser.as_view(),name='registerUser'),
     path('auth/login/',obtain_auth_token,name='loginUser'),
     path('question/<str:pk>/hint/',views.fnBlackBoxHints.as_view(),name='hintsView'),
+    path('solution/<str:pk>/',views.SubmitQuestion.as_view(),name='submitQuestion'),
 ]

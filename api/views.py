@@ -1,3 +1,4 @@
+from api.models import Solution
 from . import questions
 from rest_framework import status
 from .constants import clOptionsDict
@@ -5,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
-from .serializer import UserSerializer
+from .serializer import SolutionSerializer, UserSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
@@ -103,3 +104,43 @@ class RegisterUser(APIView):
         return Response(data={
             'token':str(token_obj)
         },status=status.HTTP_201_CREATED)
+        
+class SubmitQuestion(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    def post(self,request,pk):
+        if not clQuestionsList.get(pk):
+            return Response(data={'message':'Looks like there no such question exists please try options'},status=status.HTTP_400_BAD_REQUEST)
+
+        request.data['questionID'] = pk
+        serializer = SolutionSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        question_id = pk
+        user = request.user
+        try:
+            existing_solution = Solution.objects.select_for_update().filter(
+                user=user, questionID=question_id
+            ).first()
+            if existing_solution:
+                existing_solution.code = serializer.validated_data['code']
+                existing_solution.save()
+                serializer = SolutionSerializer(existing_solution)
+                return Response(data={'message':'data stored successfully'}, status=status.HTTP_200_OK)
+            
+            solution = serializer.save(user=user)
+            return Response(SolutionSerializer(solution).data, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({'error': 'Concurrent modification detected. Please try again.'}, status=status.HTTP_409_CONFLICT)
+        
+    def get(self,request,pk):
+        if not clQuestionsList.get(pk):
+            return Response(data={'message':'Looks like there no such question exists please try options'},status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            solution = Solution.objects.get(user=request.user, questionID=pk)
+        except Exception as e:
+            return Response(data={'message':'Solution not found for this user and question ID.'},status=status.HTTP_404_NOT_FOUND)
+
+        serializer = SolutionSerializer(solution)
+        return Response(serializer.data,status=status.HTTP_200_OK)
