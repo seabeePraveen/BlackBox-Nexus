@@ -48,8 +48,9 @@ class fnBlackBoxAPI(APIView):
     def options(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
         
-        if clOptionsDict.get(pk):
+        if clQuestionsList.get(pk):
             clInputFormat = clOptionsDict.get(pk)
+            
             clResponseData = {
                 'name': pk,
                 "description":"Options for the Black Box API",

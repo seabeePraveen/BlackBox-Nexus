@@ -1,5 +1,5 @@
 clOptionsDict = {
-    "question1":{
+    "1":{
         "input1":{
             "type": "integer",
             "required": True,
@@ -13,7 +13,7 @@ clOptionsDict = {
             "label": "input2"
         },
     },
-    "question2":{
+    "2":{
         "input1":{
             "type": "integer",
             "required": True,
@@ -27,7 +27,7 @@ clOptionsDict = {
             "label": "input2"
         },
     },
-    "question3":{
+    "3":{
         "input1":{
             "type": "integer",
             "required": True,
@@ -41,7 +41,7 @@ clOptionsDict = {
             "label": "input2"
         },
     },
-    "question4":{
+    "4":{
         "input1":{
             "type": "integer",
             "required": True,
@@ -49,7 +49,7 @@ clOptionsDict = {
             "label": "input1"
         },
     },
-    "question5":{
+    "5":{
         "input1":{
             "type": "integer",
             "required": True,
@@ -67,7 +67,7 @@ clOptionsDict = {
             "minimum_value":-5,
         },
     },
-    "question6":{
+    "6":{
         "input1":{
             "type": "integer",
             "required": True,
@@ -75,7 +75,7 @@ clOptionsDict = {
             "label": "input1"
         },
     },
-    "question7":{
+    "7":{
         "input1":{
             "type": "integer",
             "required": True,
@@ -83,7 +83,7 @@ clOptionsDict = {
             "label": "input1"
         },
     },
-    "question8":{
+    "8":{
         "input1":{
             "type": "integer",
             "required": True,
@@ -91,7 +91,7 @@ clOptionsDict = {
             "label": "input1"
         },
     },
-    "question9":{
+    "9":{
         "input1":{
             "type": "string",
             "required": True,
@@ -99,7 +99,7 @@ clOptionsDict = {
             "label": "input1"
         },
     },
-    "question10":{
+    "10":{
         "input1":{
             "type": "integer",
             "required": True,
@@ -107,7 +107,7 @@ clOptionsDict = {
             "label": "input1"
         },
     },
-    "question11":{
+    "11":{
         "input1":{
             "type": "integer",
             "required": True,
@@ -121,7 +121,7 @@ clOptionsDict = {
             "label": "input2"
         },
     },
-    "question12":{
+    "12":{
         "input1":{
             "type": "integer",
             "required": True,
@@ -129,7 +129,7 @@ clOptionsDict = {
             "label": "input1"
         },
     },
-    "question13":{
+    "13":{
         "input1":{
             "type": "string",
             "required": True,
