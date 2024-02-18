@@ -20,4 +20,4 @@ class SolutionSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     class Meta:
         model = Solution
-        fields = ['user','questionID','code']
+        fields = ['user','questionID','code','extention']
