@@ -138,7 +138,7 @@ class SubmitQuestion(APIView):
             }
             return Response(data, status=status.HTTP_201_CREATED)
         except Exception as e:
-            return Response({'error': 'Concurrent modification detected. Please try again.'}, status=status.HTTP_409_CONFLICT)
+            return Response({'error': f'Concurrent modification detected. Please try again.',"e":str(e)}, status=status.HTTP_409_CONFLICT)
         
     def get(self,request,pk):
         if not clQuestionsList.get(pk):
