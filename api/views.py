@@ -129,7 +129,13 @@ class SubmitQuestion(APIView):
                 return Response(data={'message':'data stored successfully'}, status=status.HTTP_200_OK)
             
             solution = serializer.save(user=user)
-            return Response(SolutionSerializer(solution).data, status=status.HTTP_201_CREATED)
+            serializer = SolutionSerializer(solution).data
+            data = {
+                'username':serializer['user']['username'],
+                'questionID':serializer['questionID'],
+                'code':serializer['code']
+            }
+            return Response(data, status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response({'error': 'Concurrent modification detected. Please try again.'}, status=status.HTTP_409_CONFLICT)
         
@@ -142,5 +148,10 @@ class SubmitQuestion(APIView):
         except Exception as e:
             return Response(data={'message':'Solution not found for this user and question ID.'},status=status.HTTP_404_NOT_FOUND)
 
-        serializer = SolutionSerializer(solution)
-        return Response(serializer.data,status=status.HTTP_200_OK)
+        serializer = SolutionSerializer(solution).data
+        data = {
+            'username':serializer['user']['username'],
+            'questionID':serializer['questionID'],
+            'code':serializer['code']
+        }
+        return Response(data,status=status.HTTP_200_OK)
