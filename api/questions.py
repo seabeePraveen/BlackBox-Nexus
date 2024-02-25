@@ -1,6 +1,6 @@
 from .constants import clArgumentsListofQuestions,sArgumentsErrorMssg
 
-# addition of two numbers
+# addition of two numbers = Easy
 def question1(**kwargs):
     arguments = clArgumentsListofQuestions[0]
     if len(kwargs) != len(arguments):
@@ -8,7 +8,7 @@ def question1(**kwargs):
 
     return int(kwargs[arguments[0]]) + int(kwargs[arguments[1]])
 
-# multiplication of two numbers
+# multiplication of two numbers = Easy
 def question2(**kwargs):
     arguments = clArgumentsListofQuestions[1]
     if len(kwargs) != len(arguments):
@@ -16,7 +16,7 @@ def question2(**kwargs):
 
     return int(kwargs[arguments[0]]) * int(kwargs[arguments[1]])
 
-# xor of two numbers
+# xor of two numbers = Hard
 def question3(**kwargs):
     arguments = clArgumentsListofQuestions[2]
     if len(kwargs) != len(arguments):
@@ -24,7 +24,7 @@ def question3(**kwargs):
 
     return int(kwargs[arguments[0]]) ^ int(kwargs[arguments[1]])
 
-# fibonacci
+# fibonacci = Medium
 def question4(**kwargs):
     arguments = clArgumentsListofQuestions[3]
     if len(kwargs) != len(arguments):
@@ -35,9 +35,9 @@ def question4(**kwargs):
     elif int(kwargs[arguments[0]]) == 1:
         return 1
     
-    return question4({arguments[0]:int(kwargs[arguments[0]])-1}) + question4({arguments[0]:int(kwargs[arguments[0]])-2})
+    return question4(**{arguments[0]:int(kwargs[arguments[0]])-1}) + question4(**{arguments[0]:int(kwargs[arguments[0]])-2})
 
-# question 5 in bharath questions - square
+# question 5 in bharath questions - square = Hard
 def question5(**kwargs):
     arguments = clArgumentsListofQuestions[4]
     if len(kwargs) != len(arguments):
@@ -45,7 +45,7 @@ def question5(**kwargs):
     
     return int(kwargs[arguments[0]])**int(kwargs[arguments[1]])-int(kwargs[arguments[1]])**int(kwargs[arguments[0]])
 
-# mod 5
+# mod 5 = Easy
 def question6(**kwargs):
     arguments = clArgumentsListofQuestions[5]
     if len(kwargs) != len(arguments):
@@ -53,7 +53,7 @@ def question6(**kwargs):
     
     return int(kwargs[arguments[0]])%5
 
-# digit sum
+# digit sum = Easy
 def question7(**kwargs):
     arguments = clArgumentsListofQuestions[6]
     if len(kwargs) != len(arguments):
@@ -67,15 +67,15 @@ def question7(**kwargs):
         
     return output
 
-# square and previous square
+# square and previous square = Medium
 def question8(**kwargs):
     arguments = clArgumentsListofQuestions[7]
     if len(kwargs) != len(arguments):
         raise Exception(sArgumentsErrorMssg)
     
-    return int(kwargs(arguments[0]))**2 + (int(kwargs[arguments[0]])-1)**2
+    return int(kwargs[arguments[0]])**2 + (int(kwargs[arguments[0]])-1)**2
 
-# ascii sum of difference
+# ascii sum of difference = Medium/Hard
 def question9(**kwargs):
     arguments = clArgumentsListofQuestions[8]
     if len(kwargs) != len(arguments):
@@ -88,7 +88,7 @@ def question9(**kwargs):
     
     return _sum, difference
 
-# question 1 in bharath questions - odd_even
+# question 1 in bharath questions - odd_even = Medium
 def question10(**kwargs):
     arguments = clArgumentsListofQuestions[9]
     if len(kwargs) != len(arguments):
@@ -100,7 +100,7 @@ def question10(**kwargs):
     else:
         return a**2
     
-# add_subtract fn
+# add_subtract fn = Medium
 def question11(**kwargs):
     arguments = clArgumentsListofQuestions[10]
     if len(kwargs) != len(arguments):
@@ -108,7 +108,7 @@ def question11(**kwargs):
     
     return int(kwargs[arguments[0]])*int(kwargs[arguments[1]])-(int(kwargs[arguments[0]])+int(kwargs[arguments[1]]))
 
-# count set bits and add
+# count set bits and add = Hard
 def question12(**kwargs):
     arguments = clArgumentsListofQuestions[11]
     if len(kwargs) != len(arguments):
@@ -121,7 +121,7 @@ def question12(**kwargs):
         number >>= 1
     return number
 
-# (+5,-2) pattern of the word
+# (+5,-2) pattern of the word = Hard
 def question13(**kwargs):
     arguments = clArgumentsListofQuestions[12]
     if len(kwargs) != len(arguments):
