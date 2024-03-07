@@ -2,6 +2,7 @@ from .models import *
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import Solution
+from django.http import JsonResponse
 
 class UserSerializer(serializers.ModelSerializer):
     

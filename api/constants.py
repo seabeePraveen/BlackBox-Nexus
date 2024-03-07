@@ -1,141 +1,189 @@
 clOptionsDict = {
     "1":{
-        "input1":{
+        "inputParams":[
+            {
             "type": "integer",
             "required": True,
             "read_only": True,
             "label": "input1"
         },
-        "intput2":{
+        {
             "type": "integer",
             "required": True,
             "read_only": True,
             "label": "input2"
-        },
+        }],
+        "code":{
+           "def solve(a,b):\n  //write your logic here",
+        }
     },
     "2":{
-        "input1":{
+       "inputParams":[
+            {
             "type": "integer",
             "required": True,
             "read_only": True,
             "label": "input1"
         },
-        "intput2":{
+        {
             "type": "integer",
             "required": True,
             "read_only": True,
             "label": "input2"
-        },
+        }],
+        "code":{
+           "def solve(a,b):\n  //write your logic here",
+        }
     },
     "3":{
-        "input1":{
+       "inputParams":[
+            {
             "type": "integer",
             "required": True,
             "read_only": True,
             "label": "input1"
         },
-        "intput2":{
+        {
             "type": "integer",
             "required": True,
             "read_only": True,
             "label": "input2"
-        },
+        }],
+        "code":{
+           "def solve(a,b):\n  //write your logic here",
+        }
     },
     "4":{
-        "input1":{
+        "inputParams":[
+            {
             "type": "integer",
             "required": True,
             "read_only": True,
             "label": "input1"
-        },
+        }],
+        "code":{
+           "def solve(a):\n  //write your logic here",
+        }
     },
     "5":{
-        "input1":{
-            "type": "integer",
-            "required": True,
-            "read_only": True,
-            "label": "input1",
-            "maximum_value":5,
-            "minimum_value":-5,
-        },
-        "intput2":{
-            "type": "integer",
-            "required": True,
-            "read_only": True,
-            "label": "input2",
-            "maximum_value":5,
-            "minimum_value":-5,
-        },
-    },
-    "6":{
-        "input1":{
+        "inputParams":[
+            {
             "type": "integer",
             "required": True,
             "read_only": True,
             "label": "input1"
         },
-    },
-    "7":{
-        "input1":{
-            "type": "integer",
-            "required": True,
-            "read_only": True,
-            "label": "input1"
-        },
-    },
-    "8":{
-        "input1":{
-            "type": "integer",
-            "required": True,
-            "read_only": True,
-            "label": "input1"
-        },
-    },
-    "9":{
-        "input1":{
-            "type": "string",
-            "required": True,
-            "read_only": True,
-            "label": "input1"
-        },
-    },
-    "10":{
-        "input1":{
-            "type": "integer",
-            "required": True,
-            "read_only": True,
-            "label": "input1"
-        },
-    },
-    "11":{
-        "input1":{
-            "type": "integer",
-            "required": True,
-            "read_only": True,
-            "label": "input1"
-        },
-        "intput2":{
+        {
             "type": "integer",
             "required": True,
             "read_only": True,
             "label": "input2"
-        },
+        }],
+        "code":{
+           "def solve(a,b):\n  //write your logic here",
+        }
     },
-    "12":{
-        "input1":{
+    "6":{
+        "inputParams":[
+            {
+            "type": "integer",
+            "required": True,
+            "read_only": True,
+            "label": "input1"
+        }],
+        "code":{
+           "def solve(a):\n  //write your logic here",
+        }
+    },
+    "7":{
+         "inputParams":[
+            {
+            "type": "integer",
+            "required": True,
+            "read_only": True,
+            "label": "input1"
+        }],
+        "code":{
+           "def solve(a):\n  //write your logic here",
+        }
+    },
+    "8":{
+        "inputParams":[
+            {
+            "type": "integer",
+            "required": True,
+            "read_only": True,
+            "label": "input1"
+        }],
+        "code":{
+           "def solve(a):\n  //write your logic here",
+        }
+    },
+    "9":{
+        "inputParams":[
+            {
+            "type": "integer",
+            "required": True,
+            "read_only": True,
+            "label": "input1"
+        }],
+        "code":{
+           "def solve(a):\n  //write your logic here",
+        }
+    },
+    "10":{
+        "inputParams":[
+            {
+            "type": "integer",
+            "required": True,
+            "read_only": True,
+            "label": "input1"
+        }],
+        "code":{
+           "def solve(a):\n  //write your logic here",
+        }
+    },
+    "11":{
+        "inputParams":[
+            {
             "type": "integer",
             "required": True,
             "read_only": True,
             "label": "input1"
         },
+        {
+            "type": "integer",
+            "required": True,
+            "read_only": True,
+            "label": "input2"
+        }],
+        "code":{
+           "def solve(a,b):\n  //write your logic here",
+        }
     },
-    "13":{
-        "input1":{
-            "type": "string",
+    "12":{
+      "inputParams":[
+            {
+            "type": "integer",
             "required": True,
             "read_only": True,
             "label": "input1"
-        },
+        }],
+        "code":{
+           "def solve(a):\n  //write your logic here",
+        }
+    },
+    "13":{
+        "inputParams":[
+            {
+            "type": "integer",
+            "required": True,
+            "read_only": True,
+            "label": "input1"
+        }],
+        "code":{
+           "def solve(a):\n  //write your logic here",
+        }
     },
 }
 

@@ -9,6 +9,8 @@ from rest_framework.authtoken.models import Token
 from .serializer import SolutionSerializer, UserSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+import json
+from django.http import JsonResponse
 
 clQuestionsList = {
     "1":questions.question1,
@@ -34,6 +36,7 @@ class fnBlackBoxAPI(APIView):
             fnFunctionName = clQuestionsList[pk]
             try:
                 params = request.GET.dict()
+                print(params)
                 output = fnFunctionName(**params)
             except Exception as e:
                 return Response(data={'message':f'Got Error :{str(e)}'},status=status.HTTP_400_BAD_REQUEST)
@@ -52,20 +55,21 @@ class fnBlackBoxAPI(APIView):
             clInputFormat = clOptionsDict.get(pk)
             
             clResponseData = {
-                'name': pk,
-                "description":"Options for the Black Box API",
-                "renders":[
-                    "application/json",
-                    "text/html"
-                ],
-                "parses": [
-                    "application/json",
-                    "application/x-www-form-urlencoded",
-                    "multipart/form-data"
-                ],
-                "actions":{
-                    "GET":clInputFormat
-                }
+                # 'name': pk,
+                # "description":"Options for the Black Box API",
+                # "renders":[
+                #     "application/json",
+                #     "text/html"
+                # ],
+                # "parses": [
+                #     "application/json",
+                #     "application/x-www-form-urlencoded",
+                #     "multipart/form-data"
+                # ],
+                # "actions":{
+                #     "GET":clInputFormat
+                # }
+                'data':clInputFormat
             }
         else:
             clResponseData = {
@@ -105,7 +109,32 @@ class RegisterUser(APIView):
         return Response(data={
             'token':str(token_obj)
         },status=status.HTTP_201_CREATED)
+
+class ListOfQuestion(APIView):
+    def options(self, request):
+        # Assuming questions is a list of dictionaries
         
+        
+        # Serialize questions to JSON
+        serialized_questions = json.dumps([
+    {"id": 1, "title": "Question 1", "points": 1},
+    {"id": 2, "title": "Question 2", "points": 1},
+    {"id": 3, "title": "Question 3", "points": 1},
+    {"id": 4, "title": "Question 4", "points": 1},
+    {"id": 5, "title": "Question 5", "points": 1},
+    {"id": 6, "title": "Question 6", "points": 1},
+    {"id": 7, "title": "Question 7", "points": 1},
+    {"id": 8, "title": "Question 8", "points": 1},
+    {"id": 9, "title": "Question 9", "points": 1},
+    {"id": 10, "title": "Question 10", "points": 1},
+    {"id": 11, "title": "Question 11", "points": 1},
+    {"id": 12, "title": "Question 12", "points": 1},
+    {"id": 13, "title": "Question 13", "points": 1}
+]
+)
+        
+        return JsonResponse(data={'questions': serialized_questions}, status=status.HTTP_200_OK)
+
 class SubmitQuestion(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
@@ -133,7 +162,7 @@ class SubmitQuestion(APIView):
             serializer = SolutionSerializer(solution).data
             data = {
                 'username':serializer['user']['username'],
-                'questionID':serializer['questionID'],
+                'questionID':serializer['ques`tionID'],
                 'code':serializer['code']
             }
             return Response(data, status=status.HTTP_201_CREATED)
