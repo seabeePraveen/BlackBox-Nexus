@@ -111,7 +111,7 @@ class RegisterUser(APIView):
         },status=status.HTTP_201_CREATED)
 
 class ListOfQuestion(APIView):
-    def options(self, request):
+    def get(self, request):
         # Assuming questions is a list of dictionaries
         
         
