@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY','default')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG_OPTION', 'default')
 
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Application definition

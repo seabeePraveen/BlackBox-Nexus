@@ -185,3 +185,13 @@ class SubmitQuestion(APIView):
             'code':serializer['code']
         }
         return Response(data,status=status.HTTP_200_OK)
+    
+class UserQuestionsDetails(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    def get(self,request):
+        print("Hey")
+        user = request.user
+        solutions = Solution.objects.filter(user=user)
+        serializer = SolutionSerializer(solutions,many=True)
+        return Response(data=serializer.data,status=status.HTTP_200_OK)
