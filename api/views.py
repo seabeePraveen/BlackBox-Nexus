@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
-from .serializer import SolutionSerializer, UserSerializer
+from .serializer import SolutionSerializer, UserSerializer,SolvedQuestionsSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 import json
@@ -110,6 +110,25 @@ class RegisterUser(APIView):
             'token':str(token_obj)
         },status=status.HTTP_201_CREATED)
 
+
+class LoginUser(APIView):
+    def post(self, request):
+        try:
+            username = request.data['username']
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Response(data={
+                "message":"user not found"
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        token_obj, _ = Token.objects.get_or_create(user=user)
+        
+        return Response(data={
+            'token': str(token_obj),
+            'email': str(user)  # Assuming you want to return the user's email
+        }, status=status.HTTP_201_CREATED)
+
+
 class ListOfQuestion(APIView):
     def get(self, request):
         # Assuming questions is a list of dictionaries
@@ -190,8 +209,7 @@ class UserQuestionsDetails(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
     def get(self,request):
-        print("Hey")
         user = request.user
         solutions = Solution.objects.filter(user=user)
-        serializer = SolutionSerializer(solutions,many=True)
+        serializer = SolvedQuestionsSerializer(solutions,many=True)
         return Response(data=serializer.data,status=status.HTTP_200_OK)

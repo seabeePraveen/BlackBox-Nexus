@@ -22,3 +22,11 @@ class SolutionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Solution
         fields = ['user','questionID','code','extention']
+
+
+class SolvedQuestionsSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Solution
+        fields = ['questionID','code']
+
