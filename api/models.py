@@ -8,4 +8,7 @@ class Solution(models.Model):
     code = models.TextField(null=True, blank=True)
     questionID = models.CharField(max_length=10,null=True,blank=True)
     extention = models.TextField(null=True,blank=True,default="py")
+
+    def __str__(self):
+        return self.user.username+'____'+self.questionID
     
