@@ -10,6 +10,7 @@ from .serializer import SolutionSerializer, UserSerializer,SolvedQuestionsSerial
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 import json
+from django.db import transaction
 from django.http import JsonResponse
 
 clQuestionsList = {
@@ -168,9 +169,10 @@ class SubmitQuestion(APIView):
         question_id = pk
         user = request.user
         try:
-            existing_solution = Solution.objects.select_for_update().filter(
-                user=user, questionID=question_id
-            ).first()
+            with transaction.atomic():
+                existing_solution = Solution.objects.select_for_update().filter(
+                    user=user, questionID=question_id
+                ).first()
             if existing_solution:
                 existing_solution.code = serializer.validated_data['code']
                 existing_solution.save()
@@ -181,7 +183,7 @@ class SubmitQuestion(APIView):
             serializer = SolutionSerializer(solution).data
             data = {
                 'username':serializer['user']['username'],
-                'questionID':serializer['ques`tionID'],
+                'questionID':serializer['questionID'],
                 'code':serializer['code']
             }
             return Response(data, status=status.HTTP_201_CREATED)
