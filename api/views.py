@@ -6,10 +6,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
-from .serializer import SolutionSerializer, UserSerializer,SolvedQuestionsSerializer
+from .serializer import SolutionSerializer, UserSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 import json
+import traceback
 from django.db import transaction
 from django.http import JsonResponse
 
@@ -25,8 +26,8 @@ clQuestionsList = {
     "9":questions.question9,
     "10":questions.question10,
     "11":questions.question11,
-    "12":questions.question12,
-    "13":questions.question13,
+    # "12":questions.question12,
+    # "13":questions.question13,
 }
 
 class fnBlackBoxAPI(APIView):
@@ -111,27 +112,8 @@ class RegisterUser(APIView):
             'token':str(token_obj)
         },status=status.HTTP_201_CREATED)
 
-
-class LoginUser(APIView):
-    def post(self, request):
-        try:
-            username = request.data['username']
-            user = User.objects.get(username=username)
-        except User.DoesNotExist:
-            return Response(data={
-                "message":"user not found"
-            }, status=status.HTTP_400_BAD_REQUEST)
-        
-        token_obj, _ = Token.objects.get_or_create(user=user)
-        
-        return Response(data={
-            'token': str(token_obj),
-            'email': str(user)  # Assuming you want to return the user's email
-        }, status=status.HTTP_201_CREATED)
-
-
 class ListOfQuestion(APIView):
-    def get(self, request):
+    def options(self, request):
         # Assuming questions is a list of dictionaries
         
         
@@ -148,8 +130,8 @@ class ListOfQuestion(APIView):
     {"id": 9, "title": "Question 9", "points": 1},
     {"id": 10, "title": "Question 10", "points": 1},
     {"id": 11, "title": "Question 11", "points": 1},
-    {"id": 12, "title": "Question 12", "points": 1},
-    {"id": 13, "title": "Question 13", "points": 1}
+    # {"id": 12, "title": "Question 12", "points": 1},
+    # {"id": 13, "title": "Question 13", "points": 1}
 ]
 )
         
@@ -188,7 +170,8 @@ class SubmitQuestion(APIView):
             }
             return Response(data, status=status.HTTP_201_CREATED)
         except Exception as e:
-            return Response({'error': f'Concurrent modification detected. Please try again.',"e":str(e)}, status=status.HTTP_409_CONFLICT)
+            line_number = traceback.extract_tb(e.__traceback__)[-1].lineno
+            return Response({'error': f'Concurrent modification detected. Please try again.',"e":str(e),"line_number":line_number}, status=status.HTTP_409_CONFLICT)
         
     def get(self,request,pk):
         if not clQuestionsList.get(pk):
@@ -211,7 +194,25 @@ class UserQuestionsDetails(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
     def get(self,request):
+        print("Hey")
         user = request.user
         solutions = Solution.objects.filter(user=user)
-        serializer = SolvedQuestionsSerializer(solutions,many=True)
+        serializer = SolutionSerializer(solutions,many=True)
         return Response(data=serializer.data,status=status.HTTP_200_OK)
+
+class LoginUser(APIView):
+    def post(self, request):
+        try:
+            username = request.data['username']
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return Response(data={
+                "message":"user not found"
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        token_obj, _ = Token.objects.get_or_create(user=user)
+        
+        return Response(data={
+            'token': str(token_obj),
+            'email': str(user)  # Assuming you want to return the user's email
+        }, status=status.HTTP_201_CREATED)
